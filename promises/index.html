@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>click</button>
+</body>
+    <script>
+        let counter = 0 
+        
+        document.querySelector('button').addEventListener('click', () => {
+            ++counter
+        })
+
+        setTimeout(() => {
+            if (counter > 5) {
+                return alert('You won!')
+            }
+            alert('Sorry, you lost');
+        }, 2000);
+    </script>
+</html>
