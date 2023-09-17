@@ -17,4 +17,11 @@ describe(`Reading users out of the database`, (done) => {
                 done();
             })
     })
+    it(`Find a user by _id`, (done) => {
+        User.findOne({ _id:joe._id })
+            .then((user) => {
+                assert(user.name === 'joe');
+                done();
+            })
+    })
 })
