@@ -21,7 +21,6 @@ describe("Deleting a user", () => {
     });
 
     it("Class method deleteMany", (done) => {
-        // Remove a bunch of records with some given criteria
         User.deleteMany({ name: 'joe' })
             .then(() => User.findOne({ name: 'joe' }))
             .then((user) => {
