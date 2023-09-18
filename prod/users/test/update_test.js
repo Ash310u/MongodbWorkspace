@@ -24,4 +24,8 @@ describe('Updating records', () => {
         joe.set('name', 'Tom')
         assertName(joe.save(), done)
     })
+
+    it('A model class can findOneAndUpdate', (done) => {
+        assertName(User.findOneAndUpdate({ name:'joe' }, { name:'Tom' }), done)
+    })
 })
