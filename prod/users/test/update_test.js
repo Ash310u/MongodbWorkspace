@@ -28,4 +28,8 @@ describe('Updating records', () => {
     it('A model class can findOneAndUpdate', (done) => {
         assertName(User.findOneAndUpdate({ name:'joe' }, { name:'Tom' }), done)
     })
+    
+    it('A model class can findByIdAndUpdate', (done) => {
+        assertName(User.findByIdAndUpdate( joe._id, { name:'Tom' }), done)
+    })
 })
