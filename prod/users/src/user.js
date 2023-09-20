@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     name: {
         type: String,
+        required:[true, 'Name is required.']
     },
     postcount: {
         type: Number
