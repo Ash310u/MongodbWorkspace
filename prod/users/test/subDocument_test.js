@@ -1,5 +1,6 @@
 const assert = require('assert')
-const { User } = require('../src/user')
+const { User } = require('../src/user');
+const { log } = require('console');
 
 describe('Subdocument', () => {
     it('It can create a subdocument', (done) => {
@@ -34,6 +35,24 @@ describe('Subdocument', () => {
             .then(() => User.findOne({ name:'joe' }))
             .then((user) => {
                 assert(user.posts[0].title === '1st post')
+                done()
+            })
+    });
+
+    it('Can remove an existing subdocument', (done) => {
+        const joe = new User({
+            name: 'joe',
+            posts: [{ title: '1st post' }]
+        })
+        joe.save()
+            .then(() => User.findOne({ name: 'joe' }))
+            .then((user) => {
+                user.posts[0].deleteOne()
+                return user.save();
+            })
+            .then(() => User.findOne({ name:'joe' }))
+            .then((user) => {
+                assert(user.posts.length === 0)
                 done()
             })
     })
