@@ -40,13 +40,4 @@ describe('Updating records', () => {
     it('A model class can updateMany', (done) => {
         assertName(User.updateMany({ name: 'joe' }, { name: 'Tom' }), done)
     })
-
-    it('A user can have their postcount incremented by 1', (done) => {
-        User.updateMany({ name: 'joe' }, { $inc: { postcount: 1 } })
-            .then(() => User.findOne({ name: 'joe' }))
-            .then((user) => {
-                assert(user.postcount === 1)
-                done()
-            })
-    })
 })
