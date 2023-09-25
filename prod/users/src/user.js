@@ -11,7 +11,8 @@ const UserSchema = new Schema({
             message: 'Name must be longer than 2 characters.'
         }
     },
-    posts: [PostSchema]
+    posts: [PostSchema],
+    likes: Number
 });
 
                                 // Using the 'function' keyword to refer to the 'this' keyword as a 'User instance'
