@@ -14,6 +14,11 @@ const UserSchema = new Schema({
     posts: [PostSchema]
 });
 
+                                // Using the 'function' keyword to refer to the 'this' keyword as a 'User instance'
+UserSchema.virtual('postcount').get(function () {
+    return this.posts.length
+});
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {
