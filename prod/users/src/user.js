@@ -12,7 +12,11 @@ const UserSchema = new Schema({
         }
     },
     posts: [PostSchema],
-    likes: Number
+    likes: Number,
+    blogPosts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'blogPost'
+    }]
 });
 
                                 // Using the 'function' keyword to refer to the 'this' keyword as a 'User instance'
