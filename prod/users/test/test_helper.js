@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const BlogPost = require('../src/blogPost');
 
 mongoose.Promise = global.Promise
 
@@ -14,8 +15,12 @@ before((done) => {
 })
 
 beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-        // Ready to run the next test!
-        done();
-    })
+    const { users, comments, blogposts } = mongoose.connection.collections;
+    users.drop(() => {
+        comments.drop(() => {
+            blogposts.drop(() => {
+                done()
+            })
+        })
+    });
 })
