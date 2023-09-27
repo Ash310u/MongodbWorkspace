@@ -15,5 +15,8 @@ describe('Associations', () => {
         joe.blogPosts.push(blogPost);
         blogPost.comments.push(comment);
         comment.user = joe;
-    })
+
+        Promise.all([joe.save(), blogPost.save(), comment.save()])
+            .then(() => done());
+    });
 });
