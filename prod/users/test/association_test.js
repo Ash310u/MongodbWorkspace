@@ -32,6 +32,7 @@ describe('Associations', () => {
 
     it ('Saves a full relation graph', (done) => {
         User.findOne({ name:'joe' })
+            // I called it 'Inception' method.
             .populate({
                 // This path key says in the user find the 'blogPosts' property and load up all the associated blogPosts.
                 path:'blogPosts',
