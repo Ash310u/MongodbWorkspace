@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const BlogPost = require('../src/blogPost');
 
 mongoose.Promise = global.Promise
 
