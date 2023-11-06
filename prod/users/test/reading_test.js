@@ -34,8 +34,6 @@ describe(`Reading users out of the database`, (done) => {
         .skip(1)
         .limit(2)
             .then((users) => {
-                console.log('======================================')
-                console.log(users)
                 assert(users.length === 2)
                 assert(users[0].name === 'joe')
                 assert(users[1].name === 'maria')
