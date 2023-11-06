@@ -7,7 +7,7 @@ const AlbumSchema = new Schema({
         type:String,
     },
     date:{
-        type:String,
+        type:Date,
     },
     copiesSold:{
         type:Number,
@@ -19,6 +19,8 @@ const AlbumSchema = new Schema({
         type:String,
     },
     revenue:{
-        type:String,
+        type:Number,
     },
 })
+
+module.exports = AlbumSchema;
