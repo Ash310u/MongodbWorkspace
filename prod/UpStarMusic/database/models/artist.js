@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const AlbumSchema = require('./album')
 
 const Schema = mongoose.Schema
 
@@ -22,7 +23,7 @@ const ArtistSchema = new Schema({
         type:String,
     },
     netWorth:{
-        type:String,
+        type:Number,
     },
     labelName:{
         type:String,
@@ -30,7 +31,9 @@ const ArtistSchema = new Schema({
     retired:{
         type:Boolean,
     },
-    album:[{
-        type: Schema.Types.ObjectId,
-    }]
+    albums:[AlbumSchema]
 })
+
+const Artist = mongoose.model('artist', ArtistSchema)
+
+module.exports = Artist
