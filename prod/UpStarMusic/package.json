@@ -1,7 +1,7 @@
 {
   "name": "upstar_music",
   "version": "1.0.0",
-  "description": "Starter Repo for a MongoDB course on Udemy",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron . & webpack-dev-server"
@@ -20,7 +20,7 @@
     "json-loader": "^0.5.4",
     "lodash": "^3.10.1",
     "markdown-loader": "^0.1.7",
-    "mongodb": "^2.2.36",
+    "mongodb": "^2.2.11",
     "mongoose": "^4.6.6",
     "node-sass": "*",
     "react": "^0.14.3",
@@ -34,6 +34,5 @@
     "sass-loader": "^4.0.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
-  },
-  "keywords": []
+  }
 }
