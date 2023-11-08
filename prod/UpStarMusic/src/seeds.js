@@ -1,26 +1,36 @@
 import _ from 'lodash';
 import faker from 'faker';
-import { Db, Server } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { GENRES } from './constants';
 
 const MINIMUM_ARTISTS = 2;
 const ARTISTS_TO_ADD = 15;
 
 let artistsCollection;
-const db = new Db('upstar_music', new Server('localhost', 27017));
-db.open()
-  .then(() => {
+
+const uri = "mongodb://localhost/upstar_music'";
+
+const client = new MongoClient(uri);
+
+async function run() {
+  try {
+    const db = client.db('upstar_music');
+
     artistsCollection = db.collection('artists');
-    return artistsCollection.count({});
-  })
-  .then(count => {
+    
+    let count = await artistsCollection.countDocuments();
+    
     if (count < MINIMUM_ARTISTS) {
       const artists = _.times(ARTISTS_TO_ADD, () => createArtist());
 
       artistsCollection.insertMany(artists);
     }
-  })
-  .catch(e => console.log(e));
+
+  } finally {
+    await client.close();
+  }
+}
+run().catch(console.dir);
 
 
 function createArtist() {
