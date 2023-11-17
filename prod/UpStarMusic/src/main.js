@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
-import { MongoClient } from 'mongodb';
+import { Db, Server } from 'mongodb';
 import reducers from './reducers';
 import Routes from './router';
 import mongoose from 'mongoose';
@@ -21,24 +21,16 @@ const App = () => {
   );
 };
 
-const uri = "mongodb://localhost/upstar_music'";
-
-const client = new MongoClient(uri);
-
-async function run() {
-  try {
-    const db = client.db('upstar_music');
+const db = new Db('upstar_music', new Server('localhost', 27017));
+db.open()
+  .then(() => {
     window.db = db;
     mongoose.connect('mongodb://localhost/upstar_music');
-    mongoose.connection
-      .once('open', () => {
-        ReactDOM.render(<App />, document.getElementById('root'));
-      })
-      .on('error', (error) => {
-        console.warn('Warning', error);
-      });
-  } finally {
-    await client.close();
-  }
-}
-run().catch(console.dir);
+      mongoose.connection
+        .once('open', () => {
+          ReactDOM.render(<App />, document.getElementById('root'));
+        })
+        .on('error', (error) => {
+          console.warn('Warning', error);
+        });
+  });
