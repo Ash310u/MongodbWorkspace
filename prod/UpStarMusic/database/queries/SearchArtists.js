@@ -35,6 +35,7 @@ const buildQuery = (criteria) => {
             $gte: criteria.age.min,
             $lte: criteria.age.max
         }
+    }
 
     return query
 }
