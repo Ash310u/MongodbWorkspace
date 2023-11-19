@@ -10,7 +10,7 @@ const Artist = require('../models/artist');
  */
 module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
     const query = Artist
-        .find({})
+        .find(buildQuery(criteria))
         // ES6 interpolated keys '[sortProperty]'
         .sort({ [sortProperty]: 1 })
         .skip(offset)
@@ -26,3 +26,15 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
             }
         })
 };
+
+const buildQuery = (criteria) => {
+    const query = {}
+
+    if(criteria.age) {
+        query.age = {
+            $gte: criteria.age.min,
+            $lte: criteria.age.max
+        }
+
+    return query
+}
