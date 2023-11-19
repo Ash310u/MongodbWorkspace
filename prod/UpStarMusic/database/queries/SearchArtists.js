@@ -21,26 +21,27 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
             return {
                 all: results[0],
                 count: results[1],
-                offset:offset,
-                limit:limit
+                offset: offset,
+                limit: limit
             }
         })
-};
+}
 
 const buildQuery = (criteria) => {
-    const query = {}
+    const query = {};
 
-    if(criteria.age) {
+    if (criteria.age) {
         query.age = {
             $gte: criteria.age.min,
             $lte: criteria.age.max
         }
-    if(criteria.yearsActive) {
+    }
+    if (criteria.yearsActive) {
         query.yearsActive = {
             $gte: criteria.yearsActive.min,
             $lte: criteria.yearsActive.max
         }
     }
-
+    
     return query
 }
