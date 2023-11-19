@@ -21,6 +21,6 @@ const maxQuery = Artist
 
 return Promise.all([minQuery, maxQuery])
     .then(results => {
-        return { min: result[0], max: result[1] }
+        return { min: results[0], max: results[1] }
     })
 };
