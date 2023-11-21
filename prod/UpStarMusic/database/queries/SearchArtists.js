@@ -30,7 +30,7 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
 const buildQuery = (criteria) => {
     const query = {};
 
-    if(criteria.name) {
+    if (criteria.name) {
         query.$text = { $search: criteria.name }
     }
 
@@ -46,6 +46,6 @@ const buildQuery = (criteria) => {
             $lte: criteria.yearsActive.max
         }
     }
-    
+
     return query
 }
