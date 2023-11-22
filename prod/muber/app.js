@@ -1,9 +1,7 @@
-const express = require('express')
-
+const express = require('express');
+const routes = require('./test/routes/routes');
 const app = express();
 
-app.get('/api', (req,res) => {
-    res.send({hi: 'there'})
-})
+routes(app)
 
 module.exports = app
