@@ -5,7 +5,7 @@ const app = require('../app')
 describe('The express app', () => {
     it('handles a GET request to /api', async () => {
         const response = await request(app)
-                            .get('/api')
+            .get('/api')
         assert(response.body.hi === 'there')
     })
 })
