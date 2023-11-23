@@ -21,6 +21,6 @@ describe('Dirvers controller', () => {
             .put(`/api/drivers/${driver._id}`)
             .send({ driving: true })
         const updatedDriver = await Driver.findOne({ email: 'your@mom.com' })
-        assert(updateDriver.driving === true)
+        assert(updatedDriver.driving === true)
     });
 })
