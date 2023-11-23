@@ -5,6 +5,6 @@ module.exports = {
         res.send({ hi: 'there' })
     },
     create(req, res) {
-        res.send({ hi: 'there' })
+        res.send({ hellow: 'internet' })
     }
 }
