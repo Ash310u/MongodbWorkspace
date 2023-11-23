@@ -13,8 +13,19 @@ const create = async (req, res) => {
         res.status(422).send(error)
     }
 }
+const edit = async (req, res) => {
+    try {
+        const driverId = req.params._id
+        const updateDriver = await Driver.findByIdAndUpdate({ _id: driverId }, req.body)
+        updateDriver.save()
+        res.status(200).send(updateDriver)
+    } catch (error) {
+        res.status(422).send(error)
+    }
+}
 
 module.exports = {
     greeting,
-    create
+    create,
+    edit
 }
