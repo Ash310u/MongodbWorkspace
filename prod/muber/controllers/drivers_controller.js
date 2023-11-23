@@ -23,9 +23,18 @@ const edit = async (req, res) => {
         res.status(422).send(error)
     }
 }
+const assDelete = async (req, res) => {
+    try {
+        await Driver.findByIdAndDelete({ _id: req.params._id})
+        res.status(200).send()
+    } catch (error) {
+        res.status(422).send(error)
+    }
+}
 
 module.exports = {
     greeting,
     create,
-    edit
+    edit,
+    assDelete
 }
