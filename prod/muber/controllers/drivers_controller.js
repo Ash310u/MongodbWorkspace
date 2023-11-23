@@ -26,7 +26,7 @@ const edit = async (req, res) => {
 const assDelete = async (req, res) => {
     try {
         await Driver.findByIdAndDelete(req.params._id)
-        res.status(200).send()
+        res.status(204).send()
     } catch (error) {
         res.status(422).send(error)
     }
