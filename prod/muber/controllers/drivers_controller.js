@@ -5,9 +5,13 @@ const greeting = async (req, res) => {
 }
 
 const create = async (req, res) => {
-    const driver =  new Driver(req.body)
-    await driver.save() 
-    res.status(200).send(driver)
+    try {
+        const driver = new Driver(req.body)
+        await driver.save()
+        res.status(200).send(driver)
+    } catch (error) {
+        res.status(422).send(error)
+    }
 }
 
 module.exports = {
