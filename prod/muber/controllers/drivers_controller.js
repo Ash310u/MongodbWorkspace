@@ -4,6 +4,25 @@ const greeting = async (req, res) => {
     res.send({ hi: 'there' })
 }
 
+const index = async (req, res) => {
+    const { lng, lat } = req.query;
+    try {
+        const drivers = await Driver.aggregate([
+            {
+                $geoNear: {
+                    near: { type: 'Point', coordinates: [parseFloat(lng), parseFloat(lat)] },
+                    distanceField: "distance",
+                    spherical: true,
+                    maxDistance: 200000
+                }
+            }
+        ])
+        console.log(drivers)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const create = async (req, res) => {
     try {
         const driver = new Driver(req.body)
@@ -36,5 +55,6 @@ module.exports = {
     greeting,
     create,
     edit,
-    assDelete
+    assDelete,
+    index
 }
