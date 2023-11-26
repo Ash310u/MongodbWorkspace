@@ -10,6 +10,7 @@ const index = async (req, res) => {
         const drivers = await Driver.aggregate([
             {
                 $geoNear: {
+                    // 'parseFloat' It returns the longest sequence of characters that can be converted to a valid floating-point number.
                     near: { type: 'Point', coordinates: [parseFloat(lng), parseFloat(lat)] },
                     distanceField: "distance",
                     spherical: true,
