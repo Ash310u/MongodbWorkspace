@@ -6,22 +6,18 @@ const greeting = async (req, res) => {
 
 const index = async (req, res) => {
     const { lng, lat } = req.query;
-    try {
-        const drivers = await Driver.aggregate([
-            {
-                $geoNear: {
-                    // 'parseFloat' It returns the longest sequence of characters that can be converted to a valid floating-point number.
-                    near: { type: 'Point', coordinates: [parseFloat(lng), parseFloat(lat)] },
-                    distanceField: "distance",
-                    spherical: true,
-                    maxDistance: 200000
-                }
+    const drivers = await Driver.aggregate([
+        {
+            $geoNear: {
+                // 'parseFloat' It returns the longest sequence of characters that can be converted to a valid floating-point number.
+                near: { type: 'Point', coordinates: [parseFloat(lng), parseFloat(lat)] },
+                distanceField: "distance",
+                spherical: true,
+                maxDistance: 200000
             }
-        ])
-        console.log(drivers)
-    } catch (error) {
-        console.log(error)
-    }
+        }
+    ])
+    res.status(200).send(drivers)
 }
 
 const create = async (req, res) => {

@@ -49,6 +49,7 @@ describe('Dirvers controller', () => {
         const response = await request(app)
             .get(`/api/drivers?lng=20&lat=79`)
             .send()
-        console.log(response)
+        assert(response.body.length === 1)
+        assert(response.body[0].email === 'your@mom.com')
     });
 })
