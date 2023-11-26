@@ -23,14 +23,35 @@ describe('Dirvers controller', () => {
         const updatedDriver = await Driver.findOne({ email: 'your@mom.com' })
         assert(updatedDriver.driving === true)
     });
-    
+
     it('delete to /api/drivers/id assdelete an existing driver', async () => {
-    const driver = new Driver({ email: 'your@mom.com', driving: false })
+        const driver = new Driver({ email: 'your@mom.com', driving: false })
         await driver.save()
         await request(app)
             .delete(`/api/drivers/${driver._id}`)
             .send()
         const updatedDriver = await Driver.findOne({ email: 'your@mom.com' })
         assert(updatedDriver === null)
+    });
+
+    it('get to /api/drivers/ finds drivers in a location', async () => {
+        try {
+            const driver1 = new Driver({
+                email: 'your@mom.com',
+                geometry: { type: 'Point', coordinates: [20, 80] }
+            })
+            const driver2 = new Driver({
+                email: 'your@crush.com',
+                geometry: { type: 'Point', coordinates: [24, 87] }
+            })
+            await driver1.save()
+            await driver2.save()
+            const response = await request(app)
+                .get(`/api/drivers?lng=24&lat=86`)
+                .send()
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
     });
 })
