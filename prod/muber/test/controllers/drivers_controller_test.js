@@ -35,23 +35,20 @@ describe('Dirvers controller', () => {
     });
 
     it('get to /api/drivers/ finds drivers in a location', async () => {
-        try {
-            const driver1 = new Driver({
-                email: 'your@mom.com',
-                geometry: { type: 'Point', coordinates: [20, 80] }
-            })
-            const driver2 = new Driver({
-                email: 'your@crush.com',
-                geometry: { type: 'Point', coordinates: [24, 87] }
-            })
-            await driver1.save()
-            await driver2.save()
-            const response = await request(app)
-                .get(`/api/drivers?lng=24&lat=86`)
-                .send()
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
+
+        const driver1 = new Driver({
+            email: 'your@mom.com',
+            geometry: { type: 'Point', coordinates: [20, 80] }
+        })
+        const driver2 = new Driver({
+            email: 'your@crush.com',
+            geometry: { type: 'Point', coordinates: [24, 87] }
+        })
+        await driver1.save()
+        await driver2.save()
+        const response = await request(app)
+            .get(`/api/drivers?lng=20&lat=79`)
+            .send()
+        console.log(response)
     });
 })
